@@ -30,7 +30,7 @@
 
 - name: RedHat - Remove the other elasticsearch package if switching between OSS and standard
   become: yes
-  yum:
+  dnf:
     name: '{{ es_other_package_name }}'
     state: 'absent'
 
@@ -40,7 +40,7 @@
 
 - name: RedHat - Install Elasticsearch
   become: yes
-  yum:
+  dnf:
     name: '{{ es_package_name }}{% if es_version is defined and es_version != ""  %}-{{ es_version }}{% endif %}'
     state: present
     update_cache: yes
@@ -60,7 +60,7 @@
 
 - name: RedHat - Install Elasticsearch from url
   become: yes
-  yum:
+  dnf:
     name: '{% if es_custom_package_url is defined %}{{ es_custom_package_url }}{% else %}{{ es_rpm_url }}{% endif %}'
     state: present
   when: not es_use_repository
