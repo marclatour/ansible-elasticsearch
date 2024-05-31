@@ -47,6 +47,17 @@
   register: system_change
   notify: restart elasticsearch
 
+# Set LDAP Bind Password
+- name: Set LDAP Bind Password
+  become: yes
+  command: "{{ es_home }}/bin/elasticsearch-keystore add xpack.security.authc.realms.ldap.ldap1.secure_bind_password"
+  args:
+    stdin: "{{ es_ldap_bind_password }}"
+  when: es_ldap_bind_password is defined
+  ignore_errors: true
+  register: system_change
+  notify: restart elasticsearch
+
 #Copy the default file
 - name: Copy Default File
   become: yes
