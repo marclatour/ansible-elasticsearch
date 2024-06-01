@@ -55,6 +55,7 @@
     stdin: "{{ es_ldap_bind_password }}"
   when: es_ldap_bind_password is defined
   ignore_errors: true
+  no_log: true
   register: system_change
   notify: restart elasticsearch
 
