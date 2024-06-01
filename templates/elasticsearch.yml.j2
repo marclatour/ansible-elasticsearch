@@ -98,6 +98,7 @@ xpack:
               filter: "{{ es_ldap_user_filter }}"
             group_search:
               base_dn: "{{ es_ldap_group_base_dn }}"
+              filter: "{{ es_ldap_group_filter }}"
             files:
               role_mapping: "{{ es_conf_dir }}/role_mapping.yml"
             unmapped_groups_as_roles: false
